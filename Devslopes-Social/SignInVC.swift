@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import FBSDKCoreKit
 import FBSDKLoginKit
+import SwiftKeychainWrapper
 
 class SignInVC: UIViewController {
 
@@ -18,7 +19,16 @@ class SignInVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        clearTextFields()
+        
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
+            performSegue(withIdentifier: "FeedVC", sender: nil)
+        }
     }
 
     @IBAction func facebookLoginTapped(_ sender: UIButton) {
@@ -62,6 +72,9 @@ class SignInVC: UIViewController {
                                     }
                                 } else {
                                     print("MSH: Successfully authenticated with Firebase with new email/password")
+                                    if let user = user {
+                                        self.completeSignIn(id: user.uid)
+                                    }
                                 }
                             })
                         case .errorCodeInvalidEmail:
@@ -76,6 +89,9 @@ class SignInVC: UIViewController {
                     }
                 } else {
                     print("MSH: Email user authenticated with Firebase")
+                    if let user = user {
+                        self.completeSignIn(id: user.uid)
+                    }
                 }
             })
         }
@@ -87,6 +103,9 @@ class SignInVC: UIViewController {
                 print("MSH: Unable to authenticate with Firebase: \(error.debugDescription)")
             } else {
                 print("MSH: Facebook user authenticated with Firebase")
+                if let user = user {
+                    self.completeSignIn(id: user.uid)
+                }
             }
         })
     }
@@ -99,6 +118,22 @@ class SignInVC: UIViewController {
         present(alert, animated: true, completion: nil)
         
     }
+    
+    func completeSignIn(id: String) {
+        let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
+        print("MSH: Data saved to keychain: \(keychainResult)")
+        performSegue(withIdentifier: "FeedVC", sender: nil)
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let _ = segue.destination as? FeedVC {
+            
+        }
+    }
+    
+    func clearTextFields() {
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
 }
 

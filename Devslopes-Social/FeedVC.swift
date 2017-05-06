@@ -19,6 +19,13 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            if let dict = snapshot.value as? Dictionary<String, Any> {
+                print("MSH: \(dict)")
+            }
+            
+        })
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

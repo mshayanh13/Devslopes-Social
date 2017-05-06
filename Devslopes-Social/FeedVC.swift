@@ -10,14 +10,36 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
-class FeedVC: UIViewController {
+class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let postCell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell {
+            
+            return postCell
+            
+        } else {
+            return PostCell()
+        }
     }
     
     @IBAction func signOutTapped(_ sender: UIButton) {
-        //let keychainResult = KeychainWrapper.standard.remove(key: KEY_UID)
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("MSH: Id removed from keychain\(keychainResult)")
         try! FIRAuth.auth()?.signOut()

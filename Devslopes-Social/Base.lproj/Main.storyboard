@@ -212,11 +212,11 @@
                                     <constraint firstAttribute="bottom" secondItem="hSN-gZ-1mY" secondAttribute="bottom" constant="8" id="rQo-wU-h2d"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="289" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lu8-o5-l8N">
-                                <rect key="frame" x="0.0" y="160" width="320" height="408"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="289" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lu8-o5-l8N">
+                                <rect key="frame" x="0.0" y="152" width="320" height="416"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="289" id="u6R-3p-2AS">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PostCell" rowHeight="289" id="u6R-3p-2AS" customClass="PostCell" customModule="Devslopes_Social" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="289"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u6R-3p-2AS" id="nEP-Yo-WxO">
@@ -245,7 +245,7 @@
                                                                             <color key="textColor" red="0.86666666670000003" green="0.17254901959999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-4v-3qq" customClass="CircleImageView" customModule="Devslopes_Social" customModuleProvider="target">
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="5vh-4v-3qq">
                                                                             <rect key="frame" x="212" y="0.0" width="60" height="60"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="width" constant="60" id="in2-29-0ed"/>
@@ -260,6 +260,9 @@
                                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7wc-yG-i9L">
                                                                     <rect key="frame" x="0.0" y="175" width="272" height="50"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="tpd-AF-7E9"/>
+                                                                    </constraints>
                                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -278,7 +281,7 @@
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfc-B0-2rX">
                                                                     <rect key="frame" x="42.5" y="0.0" width="39.5" height="24"/>
                                                                     <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="16"/>
-                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
+                                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
@@ -296,6 +299,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.81176470590000005" green="0.84705882349999995" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="a3q-0j-0WO" secondAttribute="bottom" constant="8" id="1Fx-vb-2wQ"/>
                                                 <constraint firstItem="a3q-0j-0WO" firstAttribute="top" secondItem="nEP-Yo-WxO" secondAttribute="top" constant="8" id="HgT-Kp-Vti"/>
@@ -303,6 +307,13 @@
                                                 <constraint firstAttribute="trailing" secondItem="a3q-0j-0WO" secondAttribute="trailing" constant="16" id="i4b-Av-y14"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="caption" destination="7wc-yG-i9L" id="VYw-K2-iaJ"/>
+                                            <outlet property="likesLabel" destination="pfc-B0-2rX" id="bkf-lM-Egj"/>
+                                            <outlet property="postImage" destination="y0h-DS-xee" id="H1i-Vu-Y6s"/>
+                                            <outlet property="profileImage" destination="nmA-Tf-u9b" id="gk1-rR-3ep"/>
+                                            <outlet property="usernameLabel" destination="5TE-LC-LZo" id="05g-X0-P0P"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -316,11 +327,14 @@
                             <constraint firstAttribute="trailing" secondItem="lu8-o5-l8N" secondAttribute="trailing" id="a91-n0-NP8"/>
                             <constraint firstItem="Fnd-rA-osT" firstAttribute="leading" secondItem="611-eG-dEy" secondAttribute="leading" constant="16" id="gX3-PN-ovU"/>
                             <constraint firstAttribute="trailing" secondItem="Fnd-rA-osT" secondAttribute="trailing" constant="16" id="kXT-Oj-aIX"/>
-                            <constraint firstItem="lu8-o5-l8N" firstAttribute="top" secondItem="Fnd-rA-osT" secondAttribute="bottom" constant="16" id="qD7-Rp-xgj"/>
+                            <constraint firstItem="lu8-o5-l8N" firstAttribute="top" secondItem="Fnd-rA-osT" secondAttribute="bottom" constant="8" id="qD7-Rp-xgj"/>
                             <constraint firstItem="qZm-3M-Tja" firstAttribute="top" secondItem="611-eG-dEy" secondAttribute="top" id="qN9-xd-aQS"/>
                             <constraint firstAttribute="trailing" secondItem="qZm-3M-Tja" secondAttribute="trailing" id="xTU-nB-XZm"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="lu8-o5-l8N" id="Bo1-de-T7R"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nb1-SN-38p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

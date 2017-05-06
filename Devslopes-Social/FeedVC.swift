@@ -39,7 +39,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    @IBAction func signOutTapped(_ sender: UIButton) {
+    @IBAction func signOutTapped(_ sender: UITapGestureRecognizer) {
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("MSH: Id removed from keychain\(keychainResult)")
         try! FIRAuth.auth()?.signOut()

@@ -21,6 +21,7 @@
 		105C6E4C1EBC28AE00492146 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C6E4B1EBC28AD00492146 /* FeedVC.swift */; };
 		105C6E4E1EBD139600492146 /* CircleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C6E4D1EBD139600492146 /* CircleImageView.swift */; };
 		105C6E501EBD50CE00492146 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C6E4F1EBD50CE00492146 /* PostCell.swift */; };
+		105C6E521EBE32B000492146 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C6E511EBE32B000492146 /* DataService.swift */; };
 		CF2E090EA8AA6FC30E4A50B5 /* Pods_Devslopes_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A011C5D9B08D79020DDB8F4 /* Pods_Devslopes_Social.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		105C6E4B1EBC28AD00492146 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
 		105C6E4D1EBD139600492146 /* CircleImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImageView.swift; sourceTree = "<group>"; };
 		105C6E4F1EBD50CE00492146 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		105C6E511EBE32B000492146 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		5A011C5D9B08D79020DDB8F4 /* Pods_Devslopes_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Devslopes_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F8B9A1F5D3FF756E8DFCCE1 /* Pods-Devslopes-Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Devslopes-Social.release.xcconfig"; path = "Pods/Target Support Files/Pods-Devslopes-Social/Pods-Devslopes-Social.release.xcconfig"; sourceTree = "<group>"; };
 		FFA20FBA3CB6EC9CEF3C5930 /* Pods-Devslopes-Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Devslopes-Social.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Devslopes-Social/Pods-Devslopes-Social.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 		10461E6A1EB6630800487EEB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				105C6E511EBE32B000492146 /* DataService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -285,6 +288,7 @@
 				102BD37F1EB7FC1C0035D865 /* RoundButton.swift in Sources */,
 				10461E591EB660D900487EEB /* AppDelegate.swift in Sources */,
 				105C6E471EB8110200492146 /* FancyButton.swift in Sources */,
+				105C6E521EBE32B000492146 /* DataService.swift in Sources */,
 				105C6E4C1EBC28AE00492146 /* FeedVC.swift in Sources */,
 				102BD3811EB800960035D865 /* FancyField.swift in Sources */,
 				102BD37B1EB7F36B0035D865 /* FancyView.swift in Sources */,

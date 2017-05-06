@@ -73,7 +73,7 @@ class SignInVC: UIViewController {
                                 } else {
                                     print("MSH: Successfully authenticated with Firebase with new email/password")
                                     if let user = user {
-                                        self.completeSignIn(id: user.uid)
+                                        self.completeSignIn(user: user, provider: user.providerID)
                                     }
                                 }
                             })
@@ -90,7 +90,7 @@ class SignInVC: UIViewController {
                 } else {
                     print("MSH: Email user authenticated with Firebase")
                     if let user = user {
-                        self.completeSignIn(id: user.uid)
+                        self.completeSignIn(user: user, provider: user.providerID)
                     }
                 }
             })
@@ -104,7 +104,7 @@ class SignInVC: UIViewController {
             } else {
                 print("MSH: Facebook user authenticated with Firebase")
                 if let user = user {
-                    self.completeSignIn(id: user.uid)
+                    self.completeSignIn(user: user, provider: credential.provider)
                 }
             }
         })
@@ -119,7 +119,9 @@ class SignInVC: UIViewController {
         
     }
     
-    func completeSignIn(id: String) {
+    func completeSignIn(user: FIRUser, provider: String) {
+        let id = user.uid
+        DataService.ds.createFirebaseDBUser(uid: id, userData: ["provider": provider])
         let keychainResult = KeychainWrapper.standard.set(id, forKey: KEY_UID)
         print("MSH: Data saved to keychain: \(keychainResult)")
         performSegue(withIdentifier: "FeedVC", sender: nil)

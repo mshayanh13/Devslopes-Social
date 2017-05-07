@@ -19,9 +19,10 @@ class PostCell: UITableViewCell {
     func configureCell(post: Post) {
         
         caption.text = post.caption
-        
         likesLabel.text = String(post.likes)
         
     }
+    
+    
 
 }

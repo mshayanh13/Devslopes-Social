@@ -14,6 +14,8 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     
+    var posts = [Post]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,9 +23,21 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         tableView.delegate = self
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
-            if let dict = snapshot.value as? Dictionary<String, Any> {
-                print("MSH: \(dict)")
+            
+            self.posts.removeAll()
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    if let postDict = snap.value as? Dictionary<String, Any> {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.append(post)
+                    }
+                }
             }
+            
+            self.tableView.reloadData()
             
         })
     }
@@ -33,12 +47,14 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let postCell = tableView.dequeueReusableCell(withIdentifier: "PostCell", for: indexPath) as? PostCell {
-            
+            let post = posts[indexPath.row]
+            print("MSH: \(post.caption)")
+            postCell.configureCell(post: post)
             return postCell
             
         } else {

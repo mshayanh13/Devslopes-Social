@@ -16,7 +16,11 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var likesLabel: UILabel!
     
-    func configureCell() {
+    func configureCell(post: Post) {
+        
+        caption.text = post.caption
+        
+        likesLabel.text = String(post.likes)
         
     }
 

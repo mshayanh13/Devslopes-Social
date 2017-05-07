@@ -10,10 +10,13 @@ import UIKit
 import SwiftKeychainWrapper
 import Firebase
 
-class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
+class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet weak var imageAdd: UIImageView!
+    @IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    var imagePicker: UIImagePickerController!
     var posts = [Post]()
     
     override func viewDidLoad() {
@@ -21,6 +24,10 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         tableView.dataSource = self
         tableView.delegate = self
+        
+        imagePicker = UIImagePickerController()
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
             
@@ -60,6 +67,21 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         } else {
             return PostCell()
         }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            imageAdd.image = image
+        } else {
+            print("MSH: A valid image wasn't selected")
+        }
+        imagePicker.dismiss(animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func addImageTapped(_ sender: UITapGestureRecognizer) {
+        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func signOutTapped(_ sender: UITapGestureRecognizer) {

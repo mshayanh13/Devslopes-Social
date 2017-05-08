@@ -16,6 +16,7 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
     @IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    let defaultImage = UIImage(named: "add-image")
     var imagePicker: UIImagePickerController!
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
@@ -90,10 +91,52 @@ class FeedVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UIIm
         present(imagePicker, animated: true, completion: nil)
     }
     
+    @IBAction func postButtonTapped(_ sender: UIButton) {
+        guard let caption = captionTextField.text, caption != "" else {
+            showErrorAlert(title: "Caption Empty", message: "Must enter caption!")
+            return
+        }
+        guard let image = imageAdd.image, image != defaultImage else {
+            showErrorAlert(title: "No Image", message: "An image must be selected")
+            return
+        }
+        if let imageData = UIImageJPEGRepresentation(image, 0.2) {
+            
+            let imageUid = NSUUID().uuidString
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/jpeg"
+            DataService.ds.REF_POST_IMAGES.child(imageUid).put(imageData, metadata: metadata, completion: { (metadata, error) in
+                if let _ = error {
+                    print("MSH: Unable to upload image to Firebase storage")
+                }
+                if let metadata = metadata {
+                    print("MSH: Successfully uploaded image to Firebase storage")
+                    let metadataURL = metadata.downloadURL()?.absoluteString
+                }
+            })
+        }
+        
+        resetPostView()
+    }
+    
     @IBAction func signOutTapped(_ sender: UITapGestureRecognizer) {
         let keychainResult = KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("MSH: Id removed from keychain\(keychainResult)")
         try! FIRAuth.auth()?.signOut()
         dismiss(animated: true, completion: nil)
+    }
+    
+    func resetPostView() {
+        captionTextField.text = ""
+        imageAdd.image = defaultImage
+    }
+    
+    func showErrorAlert(title: String, message: String) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
+        
     }
 }
